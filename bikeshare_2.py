@@ -1,3 +1,7 @@
+"""
+Start of the Code provided by Udacity
+"""
+
 import time
 import pandas as pd
 import numpy as np
@@ -9,7 +13,6 @@ CITY_DATA = { 'chicago': 'chicago.csv',
 def get_filters():
     """
     Asks user to specify a city, month, and day to analyze.
-
     Returns:
         (str) city - name of the city to analyze
         (str) month - name of the month to filter by, or "all" to apply no month filter
@@ -37,9 +40,9 @@ def get_filters():
             continue
         else:
             break
-            
+
     # TO DO: get user input for day of week (all, monday, tuesday, ... sunday)
-    while True: 
+    while True:
         day = input("Do you like to look at Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday or all days? ")
         print(day)
         day = day.lower()
@@ -54,7 +57,7 @@ def get_filters():
 
 
 def load_data(city, month, day):
-    
+
     """
     Loads data for the specified city and filters by month and day if applicable.
 
@@ -92,13 +95,17 @@ def load_data(city, month, day):
 
     return df
 
-        
+"""
+end of code provided by Udacity
+start of own code
+"""
+
 def time_stats(df):
     """Displays statistics on the most frequent times of travel."""
 
     print('\nCalculating The Most Frequent Times of Travel...\n')
     start_time = time.time()
-    
+
 # convert the Start Time column to datetime
     df['Start Time'] = pd.to_datetime(df['Start Time'])
 
@@ -106,14 +113,14 @@ def time_stats(df):
     df['month'] = df['Start Time'].dt.month
 
     popular_month = df['month'].mode() [0]
-    
+
     print('Most Frequent Start Month:', popular_month)
 
     # TO DO: display the most common day of week
     df['day'] = df['Start Time'].dt.day
 
     popular_day = df['day'].mode() [0]
-    
+
     print('Most Frequent Start Day:', popular_day)
 
     # TO DO: display the most common start hour
@@ -123,7 +130,7 @@ def time_stats(df):
 
     # find the most common hour (from 0 to 23)
     popular_hour = df['hour'].mode() [0]
-    
+
     print('Most Frequent Start Hour:', popular_hour)
 
     print("\nThis took %s seconds." % (time.time() - start_time))
@@ -138,17 +145,17 @@ def station_stats(df):
 
     # TO DO: display most commonly used start station
     popular_start = df['Start Station'].mode() [0]
-    
+
     print('Most Frequent Start Station:', popular_start)
 
     # TO DO: display most commonly used end station
     popular_end = df['End Station'].mode() [0]
-    
+
     print('Most Frequent End Station:', popular_end)
 
     # TO DO: display most frequent combination of start station and end station trip
     popular_route = df.groupby(['Start Station','End Station']).size().idxmax()
-    print('The most frequent combination of start and end station is ', popular_route) 
+    print('The most frequent combination of start and end station is ', popular_route)
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
@@ -181,7 +188,7 @@ def user_stats(df):
     # TO DO: Display counts of user types
     user_types = df['User Type'].value_counts()
     print(user_types)
-    
+
     # TO DO: Display counts of gender
     try:
         gender = df['Gender'].value_counts()
@@ -202,10 +209,13 @@ def user_stats(df):
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
-
+"""
+end of own Code
+start of mixed code (provided by Udacity but modified myself)
+"""
 
 def main():
-    
+
     while True:
         city, month, day = get_filters()
         df = load_data(city, month, day)
@@ -215,20 +225,20 @@ def main():
         trip_duration_stats(df)
         user_stats(df)
         break
-            
+
     i = 0
     raw = input('Would you like to see five rows of the raw data? Please answer with yes or no. ').lower()
-    
+
     while True:
-        if raw == 'yes': 
+        if raw == 'yes':
             print(df[i:i+5])
             raw = input('Would you like to see five rows of the raw data? Please answer with yes or no. ').lower()
             i += 5
         elif raw != 'yes':
-            break    
-            
-    restart = input('\nWould you like to restart? Enter yes or no.\n').lower() 
-    
+            break
+
+    restart = input('\nWould you like to restart? Enter yes or no.\n').lower()
+
     while True:
             city, month, day = get_filters()
             df = load_data(city, month, day)
@@ -237,9 +247,9 @@ def main():
             station_stats(df)
             trip_duration_stats(df)
             user_stats(df)
-            
+
             restart = input('\nWould you like to restart? Enter yes or no.\n').lower()
-            
+
             if restart.lower() != 'yes':
                 break
 
