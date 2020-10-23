@@ -100,6 +100,8 @@ end of code provided by Udacity
 start of own code
 """
 
+"""improving READABILITY by using p instead of popular"""
+
 def time_stats(df):
     """Displays statistics on the most frequent times of travel."""
 
@@ -112,16 +114,15 @@ def time_stats(df):
     # TO DO: display the most common month
     df['month'] = df['Start Time'].dt.month
 
-    popular_month = df['month'].mode() [0]
+    p_month = df['month'].mode() [0]
 
-    print('Most Frequent Start Month:', popular_month)
+    print('Most Frequent Start Month:', p_month)
 
     # TO DO: display the most common day of week
     df['day'] = df['Start Time'].dt.day
 
-    popular_day = df['day'].mode() [0]
-
-    print('Most Frequent Start Day:', popular_day)
+    p_day = df['day'].mode() [0]
+    print('Most Frequent Start Day:', p_day)
 
     # TO DO: display the most common start hour
 
@@ -129,9 +130,8 @@ def time_stats(df):
     df['hour'] = df['Start Time'].dt.hour
 
     # find the most common hour (from 0 to 23)
-    popular_hour = df['hour'].mode() [0]
-
-    print('Most Frequent Start Hour:', popular_hour)
+    p_hour = df['hour'].mode() [0]
+    print('Most Frequent Start Hour:', p_hour)
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
@@ -144,18 +144,16 @@ def station_stats(df):
     start_time = time.time()
 
     # TO DO: display most commonly used start station
-    popular_start = df['Start Station'].mode() [0]
-
-    print('Most Frequent Start Station:', popular_start)
+    p_start = df['Start Station'].mode() [0]
+    print('Most Frequent Start Station:', p_start)
 
     # TO DO: display most commonly used end station
-    popular_end = df['End Station'].mode() [0]
-
-    print('Most Frequent End Station:', popular_end)
+    p_end = df['End Station'].mode() [0]
+    print('Most Frequent End Station:', p_end)
 
     # TO DO: display most frequent combination of start station and end station trip
-    popular_route = df.groupby(['Start Station','End Station']).size().idxmax()
-    print('The most frequent combination of start and end station is ', popular_route)
+    p_route = df.groupby(['Start Station','End Station']).size().idxmax()
+    print('The most frequent combination of start and end station is ', p_route)
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
